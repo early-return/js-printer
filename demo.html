@@ -63,14 +63,15 @@
 	
 		<script src="javascript/printer.js"></script>
 		<script>
-			printer.toId='show-board';
-			printer.lnStr = 'root@demo ~/ # ';
-			printer.str = 'echo Welcome!\n';
-			printer.str += 'echo This is a demo of js-printer\n';
-			printer.str += 'echo You can browse more from zhiqing.ingo\n';
-			printer.str += 'echo Thanks!\n';
-			printer.str += 'exit\n';
-			printer.start();
+			var str = 'echo Welcome!\n';
+			str += 'echo This is a demo of js-printer\n';
+			str += 'echo You can browse more from zhiqing.ingo\n';
+			str += 'echo Thanks!\n';
+			str += 'exit\n';
+			Printer.init(str, {
+				selector: 'show-board',
+				lnStr: 'root@demo ~/ # '
+			}).print();
 		</script>
 	</body>
 </html>
