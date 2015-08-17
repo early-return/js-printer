@@ -3,7 +3,7 @@
 
 #用法
 
-1.在自己的html里导入printer.js文件，例如：<script src='printer.js'></script>
+1.在自己的html里导入printer.js文件，例如：      \<script src='printer.js'\>\<\/script\>
 
 2.在自己的js文件里设置好下列属性：
 
