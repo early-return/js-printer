@@ -1,6 +1,8 @@
 # js-printer
 一个用于实现打字机效果的javascript库
+
 效果地址：(http://studio.zhiqing.info/program/js-printer/)
+
 #用法
 
 1.在自己的html里导入printer.js文件，例如：  
