@@ -3,7 +3,8 @@
 
 #用法
 
-1.在自己的html里导入printer.js文件，例如：      
+1.在自己的html里导入printer.js文件，例如：  
+
 	\<script src='printer.js'\>\</script\>
 
 2.在自己的js文件里设置好下列属性：(等号后面为默认值)
@@ -33,6 +34,7 @@
 
 #例子
 -代码：
+
 	printer.str = '$ echo welcome to zhiqing.info\n'+
 	
 			'$ cat about.me\n'+
@@ -59,3 +61,5 @@
 
 
 -效果：
+
+![image](https://github.com/ButBueatiful/dotvim/raw/master/screenshots/vim-screenshot.jpg)
