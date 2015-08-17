@@ -1,7 +1,13 @@
 # js-printer
 一个用于实现打字机效果的javascript库
 
->printer.str = 'hello,world!';   //要实现打字机效果的文字
+#用法
+
+1.在自己的html里导入printer.js文件，例如：<script src='printer.js'></script>
+
+2.在自己的js文件里设置好下列属性：
+
+   printer.str = 'hello,world!';   //要实现打字机效果的文字
 
 >printer.speed = 50;		//文字的速度
 
