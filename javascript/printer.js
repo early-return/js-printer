@@ -1,77 +1,81 @@
-var printer = new Object();
-
-printer.str = 'hello,world!';   //要实现打字机效果的文字
-printer.lnStr = '';			//每行开头的文字
-printer.speed = 50;		//文字的速度
-printer.toId = 'body';		//要打印到的标签的ID			
-printer.startIndex = 0		//从第几个字符开始打印
-printer.endIndex = 0;		//打印到第几个字符结束
-printer.hasCur = true;		//是否有光标
-printer.curId = 'cur';		//光标的ID
-printer.curStr = '_';		//光标字符
-printer.curStyle = 'font-weight: bold;';	//光标的样式（CSS样式）
-printer.curSpeed = 500;		//光标的速度（ms）
-printer.index = 0;
-printer.toObj;
-printer.curSwitch = false;
-printer.curObj;
-printer.reStr = '';
-printer.flwCurTimer;
-
-printer.init = function(){	//初始化一些内容
-	printer.toObj = document.getElementById(printer.toId);
-	printer.index = printer.startIndex;
-	if(printer.endIndex == 0){
-		printer.endIndex = printer.str.length;
+(function(root, factory){
+	if(typeof define === 'function' && define.amd){
+		define([], factory);
+	}else{
+		root.Printer = factory(root);
 	}
-}
+}(this, function(root){
+	var Printer = {};
+	Printer.printer = {"version": "0.0.1"};
+	var init_options = {
+		"speed" : 50,		//文字的速度
+		"selector" : 'canvas',		//要打印到的标签的ID			
+		"startIndex" : 0,		//从第几个字符开始打印
+		"endIndex" : 0,		//打印到第几个字符结束
+		"hasCur" : true,		//是否有光标
+		"curId" : 'cur',		//光标的ID
+		"curStr" : '_',		//光标字符
+		"curStyle" : 'font-weight: bold;',	//光标的样式（CSS样式）
+		"curSpeed" : 100,		//光标的速度（ms）
+		"lnStr": ""
+	};
 
-printer.print = function(){	//打印函数
-	if(printer.index == 0) {
-		printer.reStr = printer.lnStr;
-	}
-	if(printer.index == printer.endIndex){
-		if(printer.hasCur){
-			clearTimeout(printer.flwCurTimer);
-			printer.curObj = document.getElementById(printer.curId); 
-			printer.chCur();
+
+
+	var str = "", options = init_options;
+	var flwCurTimer, dom, curObj, reStr='', curSwitch,index=0;
+
+	Printer.init = function(arg_str, arg_options){
+		str = arg_str;
+		for( var option in arg_options ){
+			options[option] = arg_options[option];
 		}
-		return;
-	} else if (printer.str.charAt(printer.index) == '\n'){
-		printer.reStr += '<br>' + printer.lnStr;
-		printer.index++;
-		printer.toObj.innerHTML = printer.reStr;
-	} else {
-		printer.reStr += printer.str.charAt(printer.index++);
-		printer.toObj.innerHTML = printer.reStr;
+		dom = document.getElementById(options.selector);
+		index = options.startIndex;
+		options.endIndex = options.endIndex == 0 ? str.length : options.endIndex
+		options.hasCur && flwCur();
+		return this;
 	}
-	setTimeout(function(){printer.print()}, printer.speed);
-}
 
-printer.flwCur = function(){	//跟随光标
-	printer.toObj.innerHTML += '<span id="'+printer.curId+'" style="'+printer.curStyle+'">'+printer.curStr+'</span>';
-	printer.flwCurTimer = setTimeout(function(){printer.flwCur()}, 1.5 * printer.speed);
-}
 
-printer.chCur = function(){	//闪烁光标
-	if(printer.curSwitch){
-		printer.curSwitch = false;
-		printer.curObj.innerHTML = printer.curStr;
-		setTimeout(function(){printer.chCur()}, printer.curSpeed);
-	} else {
-		printer.curSwitch = true;
-		printer.curObj.innerHTML = '';
-		setTimeout(function(){printer.chCur()}, printer.curSpeed);
+	Printer.print = function(){	//打印函数
+		for(var i=0; i<str.length; i++) {
+			(function(index){
+				setTimeout(function(){	
+					if (str.charAt(index) === '\n'){
+						reStr += '<br>' + options.lnStr;
+					} else {
+						reStr += str.charAt(index);
+					}
+					dom.innerHTML= options.lnStr + reStr
+				}, options.speed * (index + 1))
+			})(i);
+		}
+
+		setTimeout(function(){
+			if(options.hasCur){
+				var element = document.createElement("span");
+				element.id = options.curId
+				dom.appendChild(element);
+
+				curObj = document.getElementById(options.curId);
+				clearTimeout(flwCurTimer);
+				setInterval(chCur, options.curSpeed);
+			}
+		}, options.speed * str.length)
 	}
-}
 
-printer.start = function(){	//开始打印
-	printer.init();
-	if(printer.hasCur){
-		printer.flwCur();
+	function flwCur(){	//跟随光标
+		dom.innerHTML += '<span id="'+options.curId+'" style="'+options.curStyle+'">'+options.curStr+'</span>';
+		flwCurTimer = setTimeout(flwCur, 1.5 * options.speed);
 	}
-	printer.print();
-}
 
+	function chCur(){	//闪烁光标
+		curObj.innerHTML = curSwitch ? options.curStr : "";
+		curSwitch = !curSwitch
+	}
+
+	return Printer;
+}));
 
 
