@@ -9,7 +9,7 @@
 
 2.在自己的js文件里设置好下列属性：(等号后面为默认值)
 
-      printer.str = 'hello,world!';   //要实现打字机效果的文字
+      printer.str = 'hello,world!';   //要实现打字机效果的文字（用'\n'可以实现多行打印）
   
       printer.lnStr = '';			//每行开头的文字
 
@@ -32,7 +32,8 @@
       printer.curSpeed = 500;		//光标的速度（ms）
       
 3.以上内容设置好后，在自己的js文件里调用printer.start()函数：
-	printer.start()
+
+      printer.start()
 
 #示例
 -代码：
