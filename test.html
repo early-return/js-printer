@@ -1,0 +1,16 @@
+<div id='mydiv'></div> 
+<script> 
+str='hello,V2EX'; 
+function print (str,conId,speed ){ 
+var oconId=document.getElementById (conId ); 
+var strs=str.split (''); 
+var count=0,timer=null; 
+timer=setInterval (function (){ 
+if (count==strs.length ){clearInterval (timer );return} 
+var letterNode=document.createTextNode (strs[count]); 
+oconId.appendChild (letterNode ); 
+count++; 
+},speed ) 
+} 
+print (str,'mydiv',60 ); 
+</script>

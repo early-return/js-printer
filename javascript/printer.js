@@ -1,6 +1,7 @@
 var printer = new Object();
 
 printer.str = 'hello,world!';   //要实现打字机效果的文字
+printer.lnStr = '';			//每行开头的文字
 printer.speed = 50;		//文字的速度
 printer.toId = 'body';		//要打印到的标签的ID			
 printer.startIndex = 0		//从第几个字符开始打印
@@ -26,6 +27,9 @@ printer.init = function(){	//初始化一些内容
 }
 
 printer.print = function(){	//打印函数
+	if(printer.index == 0) {
+		printer.reStr = printer.lnStr;
+	}
 	if(printer.index == printer.endIndex){
 		if(printer.hasCur){
 			clearTimeout(printer.flwCurTimer);
@@ -34,7 +38,7 @@ printer.print = function(){	//打印函数
 		}
 		return;
 	} else if (printer.str.charAt(printer.index) == '\n'){
-		printer.reStr += '<br>';
+		printer.reStr += '<br>' + printer.lnStr;
 		printer.index++;
 		printer.toObj.innerHTML = printer.reStr;
 	} else {

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Printer Demo</title>
+		<style>
+			*{
+				margin: 0;
+				border: 0;
+				padding: 0;
+			}
+			#window{
+				width: 600px;
+				height: 400px;
+				background-color: black;
+				margin: 100px auto;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+			}
+			#title-bar{
+				width: 595px;
+				height: 20px;
+				line-height: 20px;
+				padding-left: 5px;
+				font-size: 14px;
+				background-color: #eee;
+				font-family: Consolas, serif;
+			}
+			#title-bar span:before{
+				content: "\25cf";
+			}
+			#title-bar span{
+				font-size: 24px;
+			}
+			#close{
+				color: red;
+			}
+			#min{
+				color: yellow;
+			}
+			#max{
+				color: #00FF00;
+			}
+			tilte-title{
+				font-family: 'Arial Black', SimHei;
+				font-weight: bold;
+			}
+			#show-board{
+				width: 580px;
+				height: 360px;
+				background-color: #333;
+				color: #eee;
+				padding: 10px;
+				font-family: Consolas, serif;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="window">
+			<div id="title-bar"><span id="close"></span><span id="min"></span><span id="max"></span><strong id="tilte-title">&nbsp;Console</strong></div>
+			<div id="show-board"></div>
+		</div>
+	
+		<script src="javascript/printer.js"></script>
+		<script>
+			printer.toId='show-board';
+			printer.lnStr = 'root@demo ~/ # ';
+			printer.str = 'echo Welcome!\n';
+			printer.str += 'echo This is a demo of js-printer\n';
+			printer.str += 'echo You can browse more from zhiqing.ingo\n';
+			printer.str += 'echo Thanks!\n';
+			printer.str += 'exit\n';
+			printer.start();
+		</script>
+	</body>
+</html>
