@@ -1,6 +1,6 @@
 # js-printer
 一个用于实现打字机效果的javascript库
-
+效果地址：(http://studio.zhiqing.info/program/js-printer/)
 #用法
 
 1.在自己的html里导入printer.js文件，例如：  
@@ -34,7 +34,7 @@
 3.以上内容设置好后，在自己的js文件里调用printer.start()函数：
 	printer.start()
 
-#例子
+#示例
 -代码：
 
 	printer.str = '$ echo welcome to zhiqing.info\n'+
