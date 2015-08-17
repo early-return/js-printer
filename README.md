@@ -3,9 +3,10 @@
 
 #用法
 
-1.在自己的html里导入printer.js文件，例如：      \<script src='printer.js'\>\<\/script\>
+1.在自己的html里导入printer.js文件，例如：      
+      \<script src='printer.js'\>\</script\>
 
-2.在自己的js文件里设置好下列属性：
+2.在自己的js文件里设置好下列属性：(等号后面为默认值)
 
       printer.str = 'hello,world!';   //要实现打字机效果的文字
 
@@ -26,3 +27,23 @@
       printer.curStyle = 'font-weight: bold;';	//光标的样式（CSS样式）
 
       printer.curSpeed = 500;		//光标的速度（ms）
+      
+3.以上内容设置好后，在自己的js文件里调用printer.start()函数：
+printer.start()
+
+#例子
+-代码：
+printer.str = '$ echo welcome to zhiqing.info\n'+
+			'$ cat about.me\n'+
+			'$ I am a student.\n'+
+			'$ My major is computer science.\n'+
+			'$ I am study in SUSE.\n'+
+			'$ I like movies,music and reading.\n'+
+			'$ If you want to contact me,\n'+
+			'$ You can send email to i@zhiqing.info\n'+
+			'$ echo Thanks!\n'+
+			'$ exit';
+printer.toId = 'drawing-board';
+printer.start();
+
+-效果：
