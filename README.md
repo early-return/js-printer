@@ -2,13 +2,13 @@
 一个用于实现打字机效果的javascript库
 演示地址：(http://zhiqing-lee.github.io/js-printer/)
 
-#重构
+## 重构
 
 1.使用闭包
 2.规范化
 
 
-#Usage
+## Usage
 ```
 var printer = Printer(str, [options]);
 printer.print();
@@ -19,7 +19,7 @@ or
 Printer(str, [options]).print();
 ```
 
-#Options
+## Options
 ```
 {
 		"speed" : 50,						//文字速度
