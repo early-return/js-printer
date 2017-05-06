@@ -1,12 +1,10 @@
 # js-printer
 一个用于实现打字机效果的javascript库
-效果地址：(http://studio.zhiqing.info/program/js-printer/)
-
-#Forked from [Zhiqing-Lee](https://github.com/Zhiqing-Lee/js-printer)
+演示地址：(http://zhiqing-lee.github.io/js-printer/)
 
 #重构
-1.使用闭包
 
+1.使用闭包
 2.规范化
 
 
@@ -20,6 +18,7 @@ or
 ```
 Printer(str, [options]).print();
 ```
+
 #Options
 ```
 {
@@ -35,8 +34,7 @@ Printer(str, [options]).print();
 		"lnStr": ""							//行首字符
 	};
 ```
->>>>>>> origin/master
 
 -效果：
 
-![image](http://zhiqing.info/images/GIF.gif)
+![image](http://zhiqing-lee.github.io/js-printer/sample.png)
