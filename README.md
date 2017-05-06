@@ -35,6 +35,6 @@ Printer(str, [options]).print();
 	};
 ```
 
--效果：
+## 效果：
 
 ![image](http://zhiqing-lee.github.io/js-printer/sample.png)
